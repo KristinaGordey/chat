@@ -1,0 +1,53 @@
+/* Main.module.css */
+
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .wrap {
+    background-color: #292F3F;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh; /* Высота на весь экран */
+    width: 100vw; /* Ширина на весь экран */
+    margin: 0; /* Убираем отступы */
+    padding: 0; /* Убираем поля */
+  }
+  
+  .container {
+    text-align: center;
+  }
+  
+  .heading {
+    color: white; /* Цвет текста */
+    font-size: 2rem;
+  }
+  
+  .form {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Слева над инпутами */
+  }
+  
+  .group {
+    margin: 1rem 0;
+  }
+  
+  h4 {
+    color: white; /* Белый цвет для заголовков */
+    margin: 0 0 0.5rem 0; /* Отступ снизу для заголовка */
+  }
+  
+  .input {
+    background-color: #292F3F; /* Цвет фона такой же, как у страницы */
+    border: 1px solid lightgray; /* Светло-серая граница */
+    border-radius: 5px; /* Округлые границы */
+    color: white; /* Цвет текста */
+    padding: 0.5rem;
+    width: 100%; /* Полная ширина */
+    box-sizing: border-box; /* Учитываем padding в ширину элемента */
+  }
+  
