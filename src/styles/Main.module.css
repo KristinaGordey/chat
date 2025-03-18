@@ -1,53 +1,376 @@
 /* Main.module.css */
+@font-face {
+  font-family: 'Abel';
+  src: url('../fonts/Abel-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-Regular.woff2') format('woff2');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roboto';
+  src: url('../fonts/Roboto-Light.woff2') format('woff2');
+  font-weight: 300;
+  font-style: normal;
+  font-display: swap;
+}
+
+/**
+  Нормализация блочной модели
+ */
+ *,
+ ::before,
+ ::after {
+   box-sizing: border-box;
+ }
+ 
+ /**
+   Убираем внутренние отступы слева тегам списков,
+   у которых есть атрибут class
+  */
+ :where(ul, ol):where([class]) {
+   padding-left: 0;
+ }
+ 
+ /**
+   Убираем внешние отступы body и двум другим тегам,
+   у которых есть атрибут class
+  */
+ body,
+ :where(blockquote, figure):where([class]) {
+   margin: 0;
+ }
+ 
+ /**
+   Убираем внешние отступы вертикали нужным тегам,
+   у которых есть атрибут class
+  */
+ :where(
+   h1,
+   h2,
+   h3,
+   h4,
+   h5,
+   h6,
+   p,
+   ul,
+   ol,
+   dl
+ ):where([class]) {
+   margin-block: 0;
+ }
+ 
+ :where(dd[class]) {
+   margin-left: 0;
+ }
+ 
+ :where(fieldset[class]) {
+   margin-left: 0;
+   padding: 0;
+   border: none;
+ }
+ 
+ /**
+   Убираем стандартный маркер маркированному списку,
+   у которого есть атрибут class
+  */
+ :where(ul[class]) {
+   list-style: none;
+ }
+ 
+ :where(address[class]) {
+   font-style: normal;
+ }
+ 
+ /**
+   Обнуляем вертикальные внешние отступы параграфа,
+   объявляем локальную переменную для внешнего отступа вниз,
+   чтобы избежать взаимодействие с более сложным селектором
+  */
+ p {
+   --paragraphMarginBottom: 24px;
+ 
+   margin-block: 0;
+ }
+ 
+ /**
+   Внешний отступ вниз для параграфа без атрибута class,
+   который расположен не последним среди своих соседних элементов
+  */
+ p:where(:not([class]):not(:last-child)) {
+   margin-bottom: var(--paragraphMarginBottom);
+ }
+ 
+ 
+ /**
+   Упрощаем работу с изображениями и видео
+  */
+ img,
+ video {
+   display: block;
+   max-width: 100%;
+   height: auto;
+ }
+ 
+ /**
+   Наследуем свойства шрифт для полей ввода
+  */
+ input,
+ textarea,
+ select,
+ button {
+   font: inherit;
+ }
+ 
+ html {
+   /**
+     Пригодится в большинстве ситуаций
+     (когда, например, нужно будет "прижать" футер к низу сайта)
+    */
+   height: 100%;
+   /**
+     Убираем скачок интерфейса по горизонтали
+     при появлении / исчезновении скроллбара
+    */
+   scrollbar-gutter: stable;
+ }
+ 
+ /**
+   Плавный скролл
+  */
+ html,
+ :has(:target) {
+   scroll-behavior: smooth;
+ }
+ 
+ body {
+   /**
+     Пригодится в большинстве ситуаций
+     (когда, например, нужно будет "прижать" футер к низу сайта)
+    */
+   min-height: 100%;
+   /**
+     Унифицированный интерлиньяж
+    */
+   line-height: 1.5;
+ }
+ 
+ /**
+   Нормализация высоты элемента ссылки при его инспектировании в DevTools
+  */
+ a:where([class]) {
+   display: inline-flex;
+ }
+ 
+ /**
+   Курсор-рука при наведении на элемент
+  */
+ button,
+ label {
+   cursor: pointer;
+ }
+ 
+ /**
+   Приводим к единому цвету svg-элементы
+   (за исключением тех, у которых уже указан
+   атрибут fill со значением 'none' или начинается с 'url')
+  */
+ :where([fill]:not(
+   [fill="none"],
+   [fill^="url"]
+ )) {
+   fill: currentColor;
+ }
+ 
+ /**
+   Приводим к единому цвету svg-элементы
+   (за исключением тех, у которых уже указан
+   атрибут stroke со значением 'none')
+  */
+ :where([stroke]:not(
+   [stroke="none"],
+   [stroke^="url"]
+ )) {
+   stroke: currentColor;
+ }
+ 
+ /**
+   Чиним баг задержки смены цвета при взаимодействии с svg-элементами
+  */
+ svg * {
+   transition-property: fill, stroke;
+ }
+ 
+ /**
+   Приведение рамок таблиц в классический 'collapse' вид
+  */
+ :where(table) {
+   border-collapse: collapse;
+   border-color: currentColor;
+ }
+ 
+ /**
+   Удаляем все анимации и переходы для людей,
+   которые предпочитают их не использовать
+  */
+ @media (prefers-reduced-motion: reduce) {
+   *,
+   ::before,
+   ::after {
+     animation-duration: 0.01ms !important;
+     animation-iteration-count: 1 !important;
+     transition-duration: 0.01ms !important;
+     scroll-behavior: auto !important;
+   }
+ }
+
+:root
+{
+  
+    --font-family-base: "Roboto", sans-serif;
+    --font-family-accent: "Abel", sans-serif;
+
+    --text-color: #FFFFFF;
+    --color-dark: #272A35;
+    --color-dark-alternate: #292F3F;
+    --color-gray: #373E4E;
+    --color-light-gray: #818182;
+    --color-gray-blue:#42566C;
+
+    --border: 1px solid var(var(--color-light-gray));
+    --border-small-radius: 10px;
+    --border-big-radius: 20px;
+
+    --container-width: 1300px;
+    --container-padding-x: 15px;
+
+    --transition-duration: 0.2s;
+
+    --input-height:32px;
+
+}
+
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  margin: -1px !important;
+  border: 0 !important;
+  padding: 0 !important;
+  white-space: nowrap !important;
+  clip-path: inset(100%) !important;
+  clip: rect(0 0 0 0) !important;
+  overflow: hidden !important;
+}
+
+.header{
+  background-color: #272A35;
+}
 
 body {
-    margin: 0;
+    font-family: var(--font-family-base);
+    font-weight: 400;
+    font-size: 20px;
+    line-height: 1;
+    color: var(--text-color);
+    background-color: var(--color-dark-alternate);
+    /* margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: var(--font-family); */
+  }
+
+  .container{
+    max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+    margin-inline: auto;
+    padding-inline: var(--container-padding-x);
+}
+
+  a{
+    color: var(--text-color);
   }
   
-  .wrap {
-    background-color: #292F3F;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh; /* Высота на весь экран */
-    width: 100vw; /* Ширина на весь экран */
-    margin: 0; /* Убираем отступы */
-    padding: 0; /* Убираем поля */
+  p{
+    margin-block: 0;
   }
-  
-  .container {
-    text-align: center;
-  }
-  
-  .heading {
-    color: white; /* Цвет текста */
-    font-size: 2rem;
-  }
-  
-  .form {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start; /* Слева над инпутами */
-  }
-  
-  .group {
-    margin: 1rem 0;
-  }
-  
-  h4 {
-    color: white; /* Белый цвет для заголовков */
-    margin: 0 0 0.5rem 0; /* Отступ снизу для заголовка */
-  }
-  
-  .input {
-    background-color: #292F3F; /* Цвет фона такой же, как у страницы */
-    border: 1px solid lightgray; /* Светло-серая граница */
-    border-radius: 5px; /* Округлые границы */
-    color: white; /* Цвет текста */
-    padding: 0.5rem;
-    width: 100%; /* Полная ширина */
-    box-sizing: border-box; /* Учитываем padding в ширину элемента */
-  }
-  
+
+  h1, h2, h3, h4, h5, h6{
+    font-weight: 400;
+    color: var(--text-color);
+}
+
+.input{
+  height: var(--input-height);
+  padding-inline: 25px;
+  width: 100%;
+  background-color: transparent;
+  border: var(--border);
+  border-radius: var(--border-small-radius);
+  color: var(--text-color);
+}
+
+.input:hover{
+  border-color: var(--text-color);
+}
+
+.input:focus{
+  outline: none;
+}
+
+.header{
+  min-height: 90px;
+}
+
+.header-title{
+  text-align: center;
+  font-size: 15px;
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+.enter-form-body{
+  font-family: var(--font-family-accent);
+  font-weight: 400;
+  line-height: 1.1;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  row-gap: 25px;
+
+}
+
+.enter-form-input{
+  max-width: 273px;
+}
+
+.input-column-block{
+  display: flex;
+  flex-direction: column;
+  row-gap: 6px;
+}
+
+.button{
+  display: inline-flex;
+  height: 29px;
+  align-items: center;
+  padding: 110px 4px;
+  white-space: nowrap; /* чтобы текст на кнопках не переносился */
+  background-color: var(--color-gray-blue);
+  border: none;
+  border-radius: var(--border-big-radius);
+  text-decoration: none;
+}
+
+.enter-form-button{
+   max-width: 273px;
+   width: 100%;
+}
+
