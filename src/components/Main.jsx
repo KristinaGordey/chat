@@ -14,7 +14,15 @@ const Main = () => {
   const  [values, setValues] = useState({[USERNAME]:"", [PASSWORD]:""});
   const handleChange = ({ target: {value, name}})=>{
     setValues({...values, [name]:value});
-  }
+  };
+
+  const handleClick = (e) => {
+    const isDisabled = Object.values(values).some((value) => !value);
+
+    if(isDisabled) e.preventDefault();
+  };
+
+
   //console.log(values);
 
   return (
@@ -36,7 +44,7 @@ const Main = () => {
                     <label className='enter-form-title' htmlFor="password">Password</label>
                     <input type="text" id='password' name="password" value={values[PASSWORD]} className='enter-form-input input' onChange={handleChange} autoComplete="off" required />
                   </div>  
-                    <Link className='link' to={`/chat?name=${values[USERNAME]}&password=${values[PASSWORD]}`}>
+                    <Link className='link' onClick={handleClick} to={`/chat?name=${values[USERNAME]}&password=${values[PASSWORD]}`}>
                     <button type="submit" className ="enter-form-button">Login
                     </button>
                   </Link>
