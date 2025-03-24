@@ -12,18 +12,19 @@ const FIELDS = {
 const Main = () => {
   const {USERNAME, PASSWORD} = FIELDS;
   const  [values, setValues] = useState({[USERNAME]:"", [PASSWORD]:""});
+
   const handleChange = ({ target: {value, name}})=>{
     setValues({...values, [name]:value});
   };
 
   const handleClick = (e) => {
-    const isDisabled = Object.values(values).some((value) => !value);
+    const isDisabled = Object.values(values).some((v) => !v);
 
     if(isDisabled) e.preventDefault();
   };
 
 
-  //console.log(values);
+  console.log(values);
 
   return (
     <><header className='header'>
