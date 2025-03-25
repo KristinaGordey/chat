@@ -1,5 +1,5 @@
 /* Main.module.css */
-@font-face {
+  @font-face {
     font-family: 'Abel';
     src: url('../fonts/Abel-Regular.woff2') format('woff2');
     font-weight: 400;
@@ -294,22 +294,35 @@
       line-height: 1;
       color: var(--text-color);
       background-color: var(--color-dark-alternate);
-    }
-  
-    .content{
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
-      margin-inline: auto;
-      padding-inline: var(--container-padding-x);
-      min-height: calc(100vh - var(--header-height));
-
+      
   }
   
-    a{
+  .footer{
+    height: 90px;
+  }
+  
+
+  .enter{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+    margin-inline: auto;
+    padding-inline: var(--container-padding-x);
+    min-height: calc(100vh - var(--header-height));
+  }
+
+  
+  
+
+  .contain{
+    max-width: calc(var(--container-width) + var(--container-padding-x) * 2);
+    margin-inline: auto;
+    padding-inline: var(--container-padding-x);
+  }
+  a{
       color: var(--text-color);
-    }
+  }
     
     p{
       margin-block: 0;
@@ -340,13 +353,30 @@
   
   .header{
     min-height: 90px;
-  }
-  
-  .header-title{
     text-align: center;
-    font-size: clamp(15px, 2.29vw, 30px);
+    font-size: clamp(15px, 2.29vw, 20px);
     line-height: 1;
     letter-spacing: 1px;
+    
+  }
+  
+  .header__title{
+    text-align: center;
+    font-size: clamp(15px, 2.29vw, 20px);
+    line-height: 1;
+    letter-spacing: 1px;
+  }
+
+  .header__title-chat{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
+  }
+
+  .header__inner{
+    display: flex;
+    flex-direction: column;
+    row-gap: 20px;
   }
   
   .enter-form-body{
@@ -393,6 +423,59 @@
   .link{
     width: 100%;
     text-decoration: none;
+  }
+
+  .message__enter-form{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+  }
+
+  .message__enter-button{
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    aspect-ratio: 1;
+    border: var(--color-light-gray);
+    background: url('../images/message-icon.svg') center/50% no-repeat;
+    background-color: var(--color-gray);
+    border-radius: var(--border-small-radius);
+  }
+  
+.message__enter{
+  min-height: var(--header-height);
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.messages{ 
+  display: flex;
+  flex-direction: column;
+  align-items: baseline;
+  row-gap: 30px;
+  min-height: calc(100vh - var(--header-height));
+  font-family: var(--font-family-base);
+  font-weight: 300;
+  font-size: clamp(13px, 1.98vw, 16px);
+  line-height: 1;
+  letter-spacing: 1px;
+}
+
+.messages__area{
+  flex-grow: 1;
+}
+
+  .message__enter-input{
+    border: none;
+    background-color: var(--color-dark);
+    padding-right: 40px;
+    height: 40px;
+    
   }
 
   @media (min-width: 980px){

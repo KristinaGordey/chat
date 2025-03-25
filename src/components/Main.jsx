@@ -32,7 +32,7 @@ const Main = () => {
     </header>
     <main className='content'>
       <h1 className='visually-hidden'>Chat</h1>
-      <section className='enter'>
+      <section className='enter container'>
       <h2 className='visually-hidden'>Enter login and password form</h2>
           <div className='enter-body container'>
               <form className='enter-form'>

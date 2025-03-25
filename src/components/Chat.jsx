@@ -39,42 +39,67 @@ const Chat = () => {
   const onEmojiClick =({emoji})=>setMessage(`${message} ${emoji}`);
 
   return (
-    <div className={styles.wrap}>
-      <div className={styles.header}>
-        <div className={styles.title}>
-           Chat Name
-        </div>
-        <div className={styles.users}>
-          0 users in this room
-        </div>
-        <button className={styles.left} onClick={leftRoom}>
-          Left the room
-        </button>
-      </div>
-      <div className={styles.messages}>
-        {state.map(({message}, i)=><span key={i}>{message}</span>)}
+    <><header className='header'>
+        <h2 className="header__title header__title-chat">
+          <span>Chat name</span>
+          <span>0 users in this room</span>
+        </h2>
+      </header>
+    <main className='content'>
+      <h1 className='visually-hidden'>Chat</h1>
+      <section className='messages container'>
+      <h2 className='visually-hidden'>Messages area</h2>
+      <div className="messages__area"></div>
+      <div className="message__enter contain">
+        <form className="message__enter-form">
+            <label htmlFor="message-input" className='visually-hidden'>Message</label>
+            <input type="text" id='message-input' className="message__enter-input input" placeholder='What do you want to say?' />
+            <button title='input' className='message__enter-button' type='submit'>
+              <span className="visually-hidden">Send message</span>
+            </button>
+        </form>
+      </div> 
+      </section>
+    </main> 
+    <footer className='footer'> 
+    </footer>
+   </>
+    // <div className={styles.wrap}>
+    //   <div className={styles.header}>
+    //     <div className={styles.title}>
+    //        Chat Name
+    //     </div>
+    //     <div className={styles.users}>
+    //       0 users in this room
+    //     </div>
+    //     <button className={styles.left} onClick={leftRoom}>
+    //       Left the room
+    //     </button>
+    //   </div>
+    //   <div className={styles.messages}>
+    //     {state.map(({message}, i)=><span key={i}>{message}</span>)}
 
-      </div>
-      <form className ={styles.form}>
-        <div className={styles.input}>
-      <input type="text" name="message" placeholder='What do you want to say?' value={message} onChange={handleChange} autoComplete="off" required />
-      </div>
+    //   </div>
+    //   <form className ={styles.form}>
+    //     <div className={styles.input}>
+    //   <input type="text" name="message" placeholder='What do you want to say?' value={message} onChange={handleChange} autoComplete="off" required />
+    //   </div>
 
-      <div className={styles.emoji}>
-        <img src ={icon} alt ="" onClick={()=> setOpen(!isOpen)} />
+    //   <div className={styles.emoji}>
+    //     <img src ={icon} alt ="" onClick={()=> setOpen(!isOpen)} />
 
-        {isOpen &&(
-           <div className={styles.emojies}>
-           <EmojiPicker onEmojiClick={onEmojiClick}/>
+    //     {isOpen &&(
+    //        <div className={styles.emojies}>
+    //        <EmojiPicker onEmojiClick={onEmojiClick}/>
  
-         </div>
-        )}
-        </div>
-        <div className={styles.button}> 
-          <input type="submit" onSubmit={handleSubmit} value="Send a message"/>
-        </div>   
-      </form>
-    </div>
+    //      </div>
+    //     )}
+    //     </div>
+    //     <div className={styles.button}> 
+    //       <input type="submit" onSubmit={handleSubmit} value="Send a message"/>
+    //     </div>   
+    //   </form>
+    // </div>
     
   )
   
