@@ -61,7 +61,7 @@ const Chat = () => {
       </div> 
       </section>
     </main> 
-    <footer className='footer'> 
+    <footer> 
     </footer>
    </>
     // <div className={styles.wrap}>
