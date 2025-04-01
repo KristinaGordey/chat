@@ -56,14 +56,10 @@ const Chat = () => {
       </header>
     <main className='content'>
       <h1 className='visually-hidden'>Chat</h1>
-      <section className='messages container'>
+      <section className='messages contain'>
       <h2 className='visually-hidden'>Messages area</h2>
-      <div className="messages__area">
-        <div className={styles.messages}>
-            <Messages messages ={state} name={params.name} />
-            </div>
-        </div>
-      <div className="message__enter contain">
+      <Messages messages ={state} name={params.name} />
+      <div className="message__enter">
         <form className="message__enter-form" onSubmit={handleSubmit}>
             <label htmlFor="message-input" className='visually-hidden'>Message</label>
             <input type="text" id='message-input' className="message__enter-input input" placeholder='What do you want to say?' value={message} onChange={handleChange} />

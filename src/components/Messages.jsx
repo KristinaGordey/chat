@@ -1,21 +1,21 @@
 import React from "react";
 
-import styles from "../styles/Main.module.css";
+import  "../styles/main.css";
 
 
 const Messages = ({messages, name}) => {
     console.log("Messages array:", messages);
     return (
-        <div className ={styles.messages}> 
+        <div className = 'messages__area'> 
         {messages.map(({user,message},i)=>{
             const itsMe = user.name.trim().toLowerCase()===name.trim().toLowerCase();
-            const className = itsMe ? styles.me: styles.user;
+            const className = itsMe ? 'me': 'user';
             return(
-                <div key={i} className={`${styles.message} ${className}`}>
-                    <span className={styles.user}>
+                <div key={i} className={`message__body ${className}`}>
+                    <span className= 'message__user-name'>
                         {user.name}
-                        </span>
-                        <div className={styles.text}>{message}</div>
+                    </span>
+                    <div className= 'message__text'>{message}</div>
                 </div>
                 
             )
